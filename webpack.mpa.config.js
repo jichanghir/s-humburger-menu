@@ -21,18 +21,22 @@ module.exports = {
         loader: "babel-loader",
         exclude: /node_modules/
       },
-      {
-        enforce: "pre",
-        test: /\.js$/,
-        exclude: /node_modules/,
-        loader: "eslint-loader"
-      }
+      // {
+      //   enforce: "pre",
+      //   test: /\.js$/,
+      //   exclude: /node_modules/,
+      //   loader: "eslint-loader"
+      // }
     ]
   },
   plugins: [
     new UglifyJsPlugin(),
     new webpack.optimize.CommonsChunkPlugin({
       name: ["vendor", "bootloader"]
+    }),
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery'
     })
   ],
   resolve: {
